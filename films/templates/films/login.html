@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log In</title>
+    <style>
+         body{
+          background-color: #FFE4C4;
+         }
+         table {
+          border-collapse: collapse;
+          line-height: 1.1;
+          font-family: Georgia;
+          font-size:25px;
+          color: #0C213B;
+          margin: auto;
+
+         }
+        .button{
+          text-align: center;
+        }
+        h3{
+          text-align: center;
+          font-size:25px;
+          font-family: Georgia;
+        }
+        h1{
+          text-align: center;
+          font-size:15px;
+          font-family: Georgia;
+        }
+
+    </style>
+</head>
+<body>
+<div class="form">
+    <h3>Please log in to your account </h3>
+    <form method="POST">
+        {% csrf_token %}
+        <table>{{ form }}</table>
+        <br/>
+        <div class="button"><input type="submit" value="Login"/></div>
+    </form>
+</div>
+      <h1>If you don't have an account, sign up </h1>
+    <div class="button"><a class="buttons" href="{% url 'signup' %}">Sign Up</a></div>
+</body>
+</html>

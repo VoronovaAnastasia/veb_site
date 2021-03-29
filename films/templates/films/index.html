@@ -1,0 +1,40 @@
+{% extends 'films/base.html' %}
+{% block title %}Films{% endblock %}
+{% block content %}
+{% load static %}
+
+
+<h2> Here you can select a movie to read the description or write a review </h2>
+<table>
+            {% for film in films%}
+            <tr>
+               <td rowspan="3">
+                    {% if film.poster %}
+                    <img src="{{MEDIA_URL}}{{film.poster.url}}" height="200" width="130">
+                    {% endif  %} </td>
+                <tr><td>
+    <ul>
+        <li><a href="{% url 'get_films_by_id' film.id %}">{{film.title}} </a></li>
+        <li>Released: {{film.release_date}}</li>
+        <li>Rating: {{film.rating}}</li>
+
+
+
+    </ul>
+
+                </td></tr>
+
+                <tr><td>
+
+                </td></tr>
+
+
+            </tr><br/>
+            {%endfor%}
+
+</table>
+
+
+
+
+{% endblock %}

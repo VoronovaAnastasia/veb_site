@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+     <style>
+        body{
+        background-color: #FFE4C4;
+        }
+        table {
+          border-collapse: collapse;
+          line-height: 1.1;
+          font-family: Georgia;
+          font-size:25px;
+          color: #0C213B;
+          margin: auto;
+        }
+        .button{
+          text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        <table>{{ form }}</table>
+        <br/>
+        <div class="button"><input type="submit" value="Sign Up"/></div>
+    </form>
+</body>
+</html>

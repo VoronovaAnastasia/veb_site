@@ -1,0 +1,64 @@
+{% extends 'films/base.html' %}
+{% block title %}{{ film.title }}{% endblock %}
+{% block content %}
+{% load static %}
+
+
+<table>
+            <tr>
+               <td rowspan="3">
+                    {% if film.poster %}
+                    <img src="{{MEDIA_URL}}{{film.poster.url}}" height="300" width="170">
+                    {% endif  %} </td>
+                <tr><td>
+                    <ul>
+                        <li>{{film.title}} </li>
+                        <li>Released: {{film.release_date}}</li>
+                        <li>Rating: {{film.rating}}</li>
+                        <li>
+                            {% for genre in genres%}
+                            {{genre.name}}
+                             {%endfor%}
+                        </li>
+                        <li> {{film.description}}</li>
+                    </ul>
+                </td></tr>
+                <tr><td>
+                </td></tr>
+            </tr><br/>
+</table>
+
+
+<div class="form">
+<form action="{% url 'get_films_by_id' film.id %}" method="POST">
+    {% csrf_token %}
+    <input type="number" name="rating" maxlength="50" size="80" placeholder="rate the movie" value="{{rating}}"/>
+
+     {% if rating_error %}
+    <p style="color:red;">{{ rating_error }}</p>
+    {% endif %}
+    <br/>
+    <textarea name="text" maxlength="4096" rows="10" cols="80" placeholder="Feedback text" >{{text}}</textarea>
+    {% if text_error %}
+    <p style="color:red;">{{ text_error }}</p>
+    {% endif %}
+    <br/>
+    <input type="submit" value="Create feedback"/>
+
+</form>
+</div>
+<ul>
+    {% for feedback in feedbacks%}
+    <div class="feedback">
+        <li><b> {{feedback.author.username}}</b>  {{feedback.created_at}}
+            <br/>
+           <b> score: </b>{{feedback.rating}}
+            <br/>
+            {{feedback.text}}
+
+            </li>
+        </div>
+    {%endfor%}
+</ul>
+
+{% endblock %}
